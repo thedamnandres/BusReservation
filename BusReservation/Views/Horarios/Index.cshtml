@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BusReservation.Models.Horario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaHoraSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsientosDisponibles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AsientosOcupados)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta.Destino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaHoraSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsientosDisponibles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsientosOcupados)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HorarioId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HorarioId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HorarioId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
