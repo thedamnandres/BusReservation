@@ -1,0 +1,64 @@
+﻿body {
+    font-family: 'Caveat-Regular', cursive;
+    color: white;
+}
+h1 {
+    font-family: 'Caveat-Regular', cursive;
+    font-size: 4.5em;
+    font-weight: bold;
+    color: #000000;
+    line-height: 80%;
+    text-align: center;
+ 
+}
+
+.p {
+    font-family: 'Caveat-Regular', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+. {
+    font-family: 'Caveat', cursive;
+    color: white;
+    text-decoration: none;
+}
+
+.imagen {
+    width: 1700px;
+    height: 625px;
+    opacity: 0.8;
+    position: absolute;
+     display: block;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Envía la imagen al fondo */
+}
+
+    .table {
+        margin-top:120px; /* Espacio superior para separar de h1 */
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .table thead th {
+            line-height: 1.6;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+
+    .footer {
+        margin-top: 0; /* Ajusta el margen superior del footer a 0 */
+        padding: 20px; /* Añade relleno si es necesario */
+        background-color: #f1f1f1; /* Cambia el color de fondo según necesites */
+        clear: both; /* Asegúrate de que el footer no esté afectado por elementos flotantes */
+    }
+     
+

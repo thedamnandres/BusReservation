@@ -16,6 +16,7 @@ namespace BusReservation.Models
         public string Detalles { get; set; }
 
         public string CodigoQR { get; set; }
+
         public DateTime FechaEmision { get; set; }
     }
 }

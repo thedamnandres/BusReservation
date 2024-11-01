@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<BusReservation.Models.Boleto>
+<link rel="stylesheet" href="~/css/pablo.css" asp-append-version="true" />
+
+<img src="https://images-ext-1.discordapp.net/external/m572SNkUzfWHbE2RvT-fbil0vMK4GObvcZ0F2YQQ-GE/https/www.quito-turismo.gob.ec/wp-content/uploads/2023/05/BANNER-LA-INSTITUCION.jpg?format=webp&width=1440&height=535" class="imagen" />
+
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class=" text-center text-nowrap mb-sm-0 mt-sm-3 "> Tenemos tus <br>horarios de bus</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -51,3 +54,7 @@
 }
     </tbody>
 </table>
+
+<button type="button" class="btn btn-success custom-font-button" onclick="window.location.href='/Create'">
+    <a asp-action="Create" style="display: flex; justify-content: center; margin-top: 20px;">Crear Boletos</a>
+</button>
