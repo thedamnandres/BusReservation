@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reserva)
+                @Html.DisplayName("Reserva Id")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Detalles)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CodigoQR)
+                @Html.DisplayName("QR")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaEmision)
+                @Html.DisplayName("Fecha de Emision")
             </th>
             <th></th>
         </tr>
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Reserva.Asiento)
+                @Html.DisplayFor(modelItem => item.Reserva.ReservaId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Detalles)

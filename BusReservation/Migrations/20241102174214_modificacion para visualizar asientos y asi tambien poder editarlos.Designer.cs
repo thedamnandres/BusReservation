@@ -4,6 +4,7 @@ using BusReservation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusReservation.Migrations
 {
     [DbContext(typeof(BusReservationContext))]
-    partial class BusReservationContextModelSnapshot : ModelSnapshot
+    [Migration("20241102174214_modificacion para visualizar asientos y asi tambien poder editarlos")]
+    partial class modificacionparavisualizarasientosyasitambienpodereditarlos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,8 +135,9 @@ namespace BusReservation.Migrations
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MetodoPago")
-                        .HasColumnType("int");
+                    b.Property<string>("MetodoPago")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Precio")
                         .HasColumnType("real");
