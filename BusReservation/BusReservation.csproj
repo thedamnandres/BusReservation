@@ -16,4 +16,12 @@
     <PackageReference Include="QRCoder" Version="1.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Horarios\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Horarios\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Horarios\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Horarios\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Horarios\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

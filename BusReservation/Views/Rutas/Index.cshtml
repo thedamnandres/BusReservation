@@ -22,6 +22,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Duracion)
             </th>
+            <th>
+                @Html.DisplayName("Fecha de Salida")
+            </th>
+            <th>
+                @Html.DisplayName("Hora de Salida")
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +42,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Duracion)
+            </td>
+            <td>
+                @item.FechaSalida.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Hora.ToString(@"hh\:mm")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RutaId">Edit</a> |

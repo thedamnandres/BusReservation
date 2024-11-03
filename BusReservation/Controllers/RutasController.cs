@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -50,11 +49,9 @@ namespace BusReservation.Controllers
         }
 
         // POST: Rutas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RutaId,Origen,Destino,Duracion")] Ruta ruta)
+        public async Task<IActionResult> Create([Bind("RutaId,Origen,Destino,Duracion,FechaSalida,Hora")] Ruta ruta)
         {
             if (ModelState.IsValid)
             {
@@ -82,11 +79,9 @@ namespace BusReservation.Controllers
         }
 
         // POST: Rutas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RutaId,Origen,Destino,Duracion")] Ruta ruta)
+        public async Task<IActionResult> Edit(int id, [Bind("RutaId,Origen,Destino,Duracion,FechaSalida,Hora")] Ruta ruta)
         {
             if (id != ruta.RutaId)
             {
@@ -143,9 +138,8 @@ namespace BusReservation.Controllers
             if (ruta != null)
             {
                 _context.Ruta.Remove(ruta);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
