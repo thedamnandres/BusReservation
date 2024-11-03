@@ -27,7 +27,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Asiento" class="control-label"></label>
-                <input asp-for="Asiento" class="form-control" />
+                <div id="seat-map">
+                    <!-- Render seat map here -->
+                    @foreach (var asiento in ViewBag.AsientosDisponibles)
+                    {
+                    <button type="button" class="btn btn-secondary seat" data-seat="@asiento.Value">@asiento.Text</button>
+                    }
+                </div>
+                <input type="hidden" asp-for="Asiento" />
                 <span asp-validation-for="Asiento" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -37,12 +44,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="MetodoPago" class="control-label"></label>
-                <input asp-for="MetodoPago" class="form-control" />
+                <select asp-for="MetodoPago" class="form-control" asp-items="Html.GetEnumSelectList<BusReservation.Models.MetodoPago>()"></select>
                 <span asp-validation-for="MetodoPago" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
+                <input asp-for="Precio" class="form-control" value="6.00" />
                 <span asp-validation-for="Precio" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,4 +65,14 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $('.seat').on('click', function() {
+                var seat = $(this).data('seat');
+                $('input[name="Asiento"]').val(seat);
+                $('.seat').removeClass('btn-primary').addClass('btn-secondary');
+                $(this).removeClass('btn-secondary').addClass('btn-primary');
+            });
+        });
+    </script>
 }

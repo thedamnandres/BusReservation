@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reserva)
+                @Html.DisplayName("Reserva Id")
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Detalles)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CodigoQR)
+                @Html.DisplayName("QR")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaEmision)
+                @Html.DisplayName("Fecha de Emision")
             </th>
             <th></th>
         </tr>
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Reserva.Asiento)
+                @Html.DisplayFor(modelItem => item.Reserva.ReservaId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Detalles)
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.FechaEmision)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BoletoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BoletoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BoletoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.BoletoId" class="btn btn-secondary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.BoletoId" class="btn btn-success btn-sm mx-1">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.BoletoId" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
 }

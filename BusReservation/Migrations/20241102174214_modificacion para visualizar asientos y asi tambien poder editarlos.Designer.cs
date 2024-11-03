@@ -4,6 +4,7 @@ using BusReservation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusReservation.Migrations
 {
     [DbContext(typeof(BusReservationContext))]
-    partial class BusReservationContextModelSnapshot : ModelSnapshot
+    [Migration("20241102174214_modificacion para visualizar asientos y asi tambien poder editarlos")]
+    partial class modificacionparavisualizarasientosyasitambienpodereditarlos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,6 +86,33 @@ namespace BusReservation.Migrations
                     b.ToTable("Cliente");
                 });
 
+            modelBuilder.Entity("BusReservation.Models.Horario", b =>
+                {
+                    b.Property<int>("HorarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HorarioId"));
+
+                    b.Property<int>("AsientosDisponibles")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AsientosOcupados")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaHoraSalida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RutaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HorarioId");
+
+                    b.HasIndex("RutaId");
+
+                    b.ToTable("Horario");
+                });
+
             modelBuilder.Entity("BusReservation.Models.Reserva", b =>
                 {
                     b.Property<int>("ReservaId")
@@ -105,8 +135,9 @@ namespace BusReservation.Migrations
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MetodoPago")
-                        .HasColumnType("int");
+                    b.Property<string>("MetodoPago")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Precio")
                         .HasColumnType("real");
@@ -139,12 +170,6 @@ namespace BusReservation.Migrations
                     b.Property<TimeSpan>("Duracion")
                         .HasColumnType("time");
 
-                    b.Property<DateTime>("FechaSalida")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("Hora")
-                        .HasColumnType("time");
-
                     b.Property<string>("Origen")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -164,6 +189,17 @@ namespace BusReservation.Migrations
                         .IsRequired();
 
                     b.Navigation("Reserva");
+                });
+
+            modelBuilder.Entity("BusReservation.Models.Horario", b =>
+                {
+                    b.HasOne("BusReservation.Models.Ruta", "Ruta")
+                        .WithMany("Horarios")
+                        .HasForeignKey("RutaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ruta");
                 });
 
             modelBuilder.Entity("BusReservation.Models.Reserva", b =>
@@ -193,6 +229,11 @@ namespace BusReservation.Migrations
             modelBuilder.Entity("BusReservation.Models.Reserva", b =>
                 {
                     b.Navigation("Boleto");
+                });
+
+            modelBuilder.Entity("BusReservation.Models.Ruta", b =>
+                {
+                    b.Navigation("Horarios");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,7 +16,13 @@ namespace BusReservation.Models
         public string Destino { get; set; }
 
         public TimeSpan Duracion { get; set; }
+        
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime FechaSalida { get; set; }
 
-        public ICollection<Horario>? Horarios { get; set; } = new List<Horario>();
+        [Required]
+        [DataType(DataType.Time)]
+        public TimeSpan Hora { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BusReservation.Models.Cliente>
-
+<link rel="stylesheet" href="~/css/paul.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Registro de Cliente";
 }
 
-<h1>Index</h1>
+<h1>Registro de Cliente</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success btn-sm">Ingreso de datos</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-secondary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-success btn-sm mx-1">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
 }

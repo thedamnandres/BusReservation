@@ -17,7 +17,6 @@ namespace BusReservation.Data
         public DbSet<BusReservation.Models.Cliente> Cliente { get; set; } = default!;
         public DbSet<BusReservation.Models.Reserva> Reserva { get; set; } = default!;
         public DbSet<BusReservation.Models.Boleto> Boleto { get; set; } = default!;
-        public DbSet<BusReservation.Models.Horario> Horario { get; set; } = default!;
         public DbSet<BusReservation.Models.Ruta> Ruta { get; set; } = default!;
     }
 }

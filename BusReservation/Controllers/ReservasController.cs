@@ -51,12 +51,21 @@ namespace BusReservation.Controllers
         {
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido");
             ViewData["RutaId"] = new SelectList(_context.Set<Ruta>(), "RutaId", "Destino");
+
+            var asientosDisponibles = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "A1", Value = "A1" },
+                new SelectListItem { Text = "A2", Value = "A2" },
+                new SelectListItem { Text = "A3", Value = "A3" },
+                new SelectListItem { Text = "A4", Value = "A4" },
+                new SelectListItem { Text = "A5", Value = "A5" }
+            };
+            
+            ViewBag.AsientosDisponibles = asientosDisponibles;
             return View();
         }
 
         // POST: Reservas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReservaId,ClienteId,RutaId,FechaReserva,Asiento,EstadoReserva,MetodoPago,Precio")] Reserva reserva)
@@ -65,6 +74,19 @@ namespace BusReservation.Controllers
             {
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
+
+                // Create a Boleto object when a Reserva is created
+                var boleto = new Boleto
+                {
+                    ReservaId = reserva.ReservaId,
+                    Detalles = "Reserva de Bus", // Set appropriate details
+                    CodigoQR = "QR code here", // Generate or set QR code
+                    FechaEmision = DateTime.Now
+                };
+
+                _context.Add(boleto);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido", reserva.ClienteId);
@@ -85,14 +107,22 @@ namespace BusReservation.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido", reserva.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Nombre", reserva.ClienteId);
             ViewData["RutaId"] = new SelectList(_context.Set<Ruta>(), "RutaId", "Destino", reserva.RutaId);
+            
+            var asientosDisponibles = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "A1", Value = "A1" },
+                new SelectListItem { Text = "A2", Value = "A2" },
+                new SelectListItem { Text = "A3", Value = "A3" },
+                new SelectListItem { Text = "A4", Value = "A4" },
+                new SelectListItem { Text = "A5", Value = "A5" }
+            };
+            ViewBag.AsientosDisponibles = asientosDisponibles;
             return View(reserva);
         }
 
         // POST: Reservas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReservaId,ClienteId,RutaId,FechaReserva,Asiento,EstadoReserva,MetodoPago,Precio")] Reserva reserva)
@@ -108,6 +138,18 @@ namespace BusReservation.Controllers
                 {
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
+
+                    // Update the corresponding Boleto object
+                    var boleto = await _context.Boleto.FirstOrDefaultAsync(b => b.ReservaId == reserva.ReservaId);
+                    if (boleto != null)
+                    {
+                        boleto.Detalles = "Updated details here"; // Update appropriate details
+                        boleto.CodigoQR = "Updated QR code here"; // Update or regenerate QR code
+                        boleto.FechaEmision = DateTime.Now;
+
+                        _context.Update(boleto);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,7 +164,7 @@ namespace BusReservation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido", reserva.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Nombre", reserva.ClienteId);
             ViewData["RutaId"] = new SelectList(_context.Set<Ruta>(), "RutaId", "Destino", reserva.RutaId);
             return View(reserva);
         }
@@ -155,10 +197,17 @@ namespace BusReservation.Controllers
             var reserva = await _context.Reserva.FindAsync(id);
             if (reserva != null)
             {
+                // Find and delete the corresponding Boleto object
+                var boleto = await _context.Boleto.FirstOrDefaultAsync(b => b.ReservaId == id);
+                if (boleto != null)
+                {
+                    _context.Boleto.Remove(boleto);
+                }
+
                 _context.Reserva.Remove(reserva);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
