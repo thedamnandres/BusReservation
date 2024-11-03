@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<BusReservation.Models.Ruta>
-
+<link rel="stylesheet" href="~/css/paul.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rutas";
 }
 
-<h1>Index</h1>
+<h1>RUTAS</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn">Crear</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,6 +21,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th>
+                @Html.DisplayName("Fecha de Salida")
+            </th>
+            <th>
+                @Html.DisplayName("Hora de Salida")
             </th>
             <th></th>
         </tr>
@@ -35,6 +42,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Duracion)
+            </td>
+            <td>
+                @item.FechaSalida.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Hora.ToString(@"hh\:mm")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RutaId">Edit</a> |

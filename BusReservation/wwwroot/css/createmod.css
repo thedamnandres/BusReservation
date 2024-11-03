@@ -1,0 +1,66 @@
+﻿body {
+    background-color: #f7f7f7; /* Fondo gris claro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    color: #333; /* Texto oscuro */
+}
+
+.container {
+    background-color: white; /* Fondo blanco para el formulario */
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    width: 100%;
+    max-width: 600px; /* Para limitar el ancho del formulario */
+}
+
+h1, h4 {
+    color: #007bff; /* Color azul para los títulos */
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Color azul para los botones */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Azul más oscuro cuando se pasa el ratón */
+    }
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+.text-danger {
+    color: #dc3545; /* Color rojo para los errores */
+}
+
+hr {
+    border-top: 1px solid #ccc;
+}

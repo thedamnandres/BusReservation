@@ -3,6 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BusReservation.Models
 {
+    public enum MetodoPago
+    {
+        [Display(Name = "Tarjeta Crédito")]
+        TarjetaCredito,
+        [Display(Name = "Tarjeta Metro")]
+        TarjetaMetro,
+        [Display(Name = "Efectivo")]
+        Efectivo
+    }
     public class Reserva
     {
 
@@ -26,7 +35,11 @@ namespace BusReservation.Models
         [Required]
         public bool EstadoReserva { get; set; }
 
-        public string MetodoPago { get; set; }
+        [Required]
+        public MetodoPago MetodoPago { get; set; }
         public float Precio { get; set; }
+        
+        public Boleto? Boleto { get; set; }
+        
     }
 }
