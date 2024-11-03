@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<BusReservation.Models.Ruta>
-
+<link rel="stylesheet" href="~/css/paul.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rutas";
 }
 
-<h1>Index</h1>
+<h1>RUTAS</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn">Crear</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
