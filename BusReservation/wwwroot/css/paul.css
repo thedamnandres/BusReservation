@@ -1,6 +1,5 @@
 ﻿body {
     background-color: midnightblue; /* Color de fondo cuando la imagen no cubre todo */
-    background-image: url('https://www.quito-turismo.gob.ec/wp-content/uploads/2023/08/banners_quito_inv_turistica.png');
     background-repeat: no-repeat;
     background-size: 70%; /* Reduce el tamaño de la imagen */
     background-position: center top; /* Centra la imagen en la parte superior */
