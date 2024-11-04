@@ -1,81 +1,102 @@
 ﻿@model BusReservation.Models.Reserva
+<link rel="stylesheet" href="~/css/createmod.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Edit";
+ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="container text-center">
+    <h1>EDITAR RESERVA</h1>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ReservaId" />
 
-<h4>Reserva</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ReservaId" />
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RutaId" class="control-label"></label>
-                <select asp-for="RutaId" class="form-control" asp-items="ViewBag.RutaId"></select>
-                <span asp-validation-for="RutaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaReserva" class="control-label"></label>
-                <input asp-for="FechaReserva" class="form-control" />
-                <span asp-validation-for="FechaReserva" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Asiento" class="control-label"></label>
-                <div id="seat-map">
-                    <!-- Render seat map here -->
-                    @foreach (var asiento in ViewBag.AsientosDisponibles)
-                    {
-                    <button type="button" class="btn @((asiento.Value == Model.Asiento) ? "btn-primary" : "btn-secondary") seat" data-seat="@asiento.Value">@asiento.Text</button>
-                    }
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Cliente</label>
+                    <div class="col-sm-10">
+                        <select asp-for="ClienteId" class="form-control form-control-lg" asp-items="ViewBag.ClienteId"></select>
+                    </div>
                 </div>
-                <input type="hidden" asp-for="Asiento" />
-                <span asp-validation-for="Asiento" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="EstadoReserva" /> @Html.DisplayNameFor(model => model.EstadoReserva)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="MetodoPago" class="control-label"></label>
-                <select asp-for="MetodoPago" class="form-control" asp-items="Html.GetEnumSelectList<BusReservation.Models.MetodoPago>()"></select>
-                <span asp-validation-for="MetodoPago" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Ruta</label>
+                    <div class="col-sm-10">
+                        <select asp-for="RutaId" class="form-control form-control-lg" asp-items="ViewBag.RutaId"></select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Fecha</label>
+                    <div class="col-sm-10">
+                        <input asp-for="FechaReserva" type="date" class="form-control form-control-lg" />
+                        <span asp-validation-for="FechaReserva" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Asiento</label>
+                    <div class="col-sm-10 d-flex flex-wrap">
+                        <div id="seat-map">
+                            <!-- Render seat map here -->
+                            @foreach (var asiento in ViewBag.AsientosDisponibles)
+                            {
+                            <button type="button" class="btn @((asiento.Value == Model.Asiento) ? "btn-primary" : "btn-light") seat m-1" data-seat="@asiento.Value">@asiento.Text</button>
+                            }
+                        </div>
+                        <input type="hidden" asp-for="Asiento" />
+                        <span asp-validation-for="Asiento" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Estado</label>
+                    <div class="col-sm-10 d-flex align-items-center">
+                        <input asp-for="EstadoReserva" class="form-check-input" type="checkbox" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Pago</label>
+                    <div class="col-sm-10">
+                        <select asp-for="MetodoPago" class="form-control form-control-lg" asp-items="Html.GetEnumSelectList<BusReservation.Models.MetodoPago>()"></select>
+                        <span asp-validation-for="MetodoPago" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-lg text-white">Precio</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Precio" class="form-control form-control-lg" />
+                        <span asp-validation-for="Precio" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary w-100" />
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a asp-action="Index" class="btn btn-secondary w-100">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(document).ready(function() {
-            $('.seat').on('click', function() {
-                var seat = $(this).data('seat');
-                $('input[name="Asiento"]').val(seat);
-                $('.seat').removeClass('btn-primary').addClass('btn-secondary');
-                $(this).removeClass('btn-secondary').addClass('btn-primary');
-            });
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    $(document).ready(function() {
+        $('.seat').on('click', function() {
+            var seat = $(this).data('seat');
+            $('input[name="Asiento"]').val(seat);
+            $('.seat').removeClass('btn-primary').addClass('btn-secondary');
+            $(this).removeClass('btn-secondary').addClass('btn-primary');
         });
-    </script>
+    });
+</script>
 }

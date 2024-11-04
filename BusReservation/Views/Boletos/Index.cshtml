@@ -1,53 +1,46 @@
 ﻿@model IEnumerable<BusReservation.Models.Boleto>
-
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Boletos";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>BOLETOS</h1>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Reserva Id")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Detalles)
-            </th>
-            <th>
-                @Html.DisplayName("QR")
-            </th>
-            <th>
-                @Html.DisplayName("Fecha de Emision")
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayName("Reserva Id")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalles)
+        </th>
+        <th>
+            @Html.DisplayName("QR")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha de Emisión")
+        </th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reserva.ReservaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalles)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoQR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaEmision)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BoletoId" class="btn btn-secondary btn-sm">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.BoletoId" class="btn btn-success btn-sm mx-1">Detalles</a>
-                <a asp-action="Delete" asp-route-id="@item.BoletoId" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
-        </tr>
-}
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reserva.ReservaId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detalles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoQR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEmision)
+        </td>
+    </tr>
+    }
     </tbody>
 </table>

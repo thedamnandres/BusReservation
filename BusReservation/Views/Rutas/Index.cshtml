@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Destino)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
+                @item.Duracion.ToString(@"hh\:mm") h
             </td>
             <td>
                 @item.FechaSalida.ToString("dd/MM/yyyy")
