@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<BusReservation.Models.Ruta>
-<link rel="stylesheet" href="~/css/paul.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 @{
     ViewData["Title"] = "Rutas";
 }
 
-<h1>RUTAS</h1>
-
-<p>
-    <a asp-action="Create" class="btn">Crear</a>
-</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>RUTAS</h1>
+    <a asp-action="Create" class="btn btn-info text-white">Nueva Ruta</a>
+</div>
 
 <table class="table">
     <thead>
@@ -20,13 +19,13 @@
                 @Html.DisplayNameFor(model => model.Destino)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duracion)
+                @Html.DisplayName("Duración")
             </th>
             <th>
-                @Html.DisplayName("Fecha de Salida")
+                @Html.DisplayName("Salida")
             </th>
             <th>
-                @Html.DisplayName("Hora de Salida")
+                @Html.DisplayName("Hora")
             </th>
             <th></th>
         </tr>
@@ -41,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Destino)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
+                @item.Duracion.ToString(@"hh\:mm") h
             </td>
             <td>
                 @item.FechaSalida.ToString("dd/MM/yyyy")
@@ -50,9 +49,9 @@
                 @item.Hora.ToString(@"hh\:mm")
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RutaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RutaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RutaId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RutaId" class="btn btn-secondary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.RutaId" class="btn btn-success btn-sm mx-1">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.RutaId" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
 }

@@ -55,10 +55,15 @@ namespace BusReservation.Controllers
             var asientosDisponibles = new List<SelectListItem>
             {
                 new SelectListItem { Text = "A1", Value = "A1" },
+                new SelectListItem { Text = "B1", Value = "B1" },
                 new SelectListItem { Text = "A2", Value = "A2" },
+                new SelectListItem { Text = "B2", Value = "B2" },
                 new SelectListItem { Text = "A3", Value = "A3" },
+                new SelectListItem { Text = "B3", Value = "B3" },
                 new SelectListItem { Text = "A4", Value = "A4" },
-                new SelectListItem { Text = "A5", Value = "A5" }
+                new SelectListItem { Text = "B4", Value = "B4" },
+                new SelectListItem { Text = "A5", Value = "A5" },
+                new SelectListItem { Text = "B5", Value = "B5" }
             };
             
             ViewBag.AsientosDisponibles = asientosDisponibles;
@@ -70,6 +75,10 @@ namespace BusReservation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReservaId,ClienteId,RutaId,FechaReserva,Asiento,EstadoReserva,MetodoPago,Precio")] Reserva reserva)
         {
+            if (string.IsNullOrEmpty(reserva.Asiento))
+            {
+                ModelState.AddModelError("Asiento", "El asiento es obligatorio.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(reserva);
@@ -79,7 +88,7 @@ namespace BusReservation.Controllers
                 var boleto = new Boleto
                 {
                     ReservaId = reserva.ReservaId,
-                    Detalles = "Reserva de Bus", // Set appropriate details
+                    Detalles = "Reserva de Bus", 
                     CodigoQR = "QR code here", // Generate or set QR code
                     FechaEmision = DateTime.Now
                 };
@@ -107,16 +116,21 @@ namespace BusReservation.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Nombre", reserva.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido", reserva.ClienteId);
             ViewData["RutaId"] = new SelectList(_context.Set<Ruta>(), "RutaId", "Destino", reserva.RutaId);
             
             var asientosDisponibles = new List<SelectListItem>
             {
                 new SelectListItem { Text = "A1", Value = "A1" },
+                new SelectListItem { Text = "B1", Value = "B1" },
                 new SelectListItem { Text = "A2", Value = "A2" },
+                new SelectListItem { Text = "B2", Value = "B2" },
                 new SelectListItem { Text = "A3", Value = "A3" },
+                new SelectListItem { Text = "B3", Value = "B3" },
                 new SelectListItem { Text = "A4", Value = "A4" },
-                new SelectListItem { Text = "A5", Value = "A5" }
+                new SelectListItem { Text = "B4", Value = "B4" },
+                new SelectListItem { Text = "A5", Value = "A5" },
+                new SelectListItem { Text = "B5", Value = "B5" }
             };
             ViewBag.AsientosDisponibles = asientosDisponibles;
             return View(reserva);
@@ -164,7 +178,7 @@ namespace BusReservation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Nombre", reserva.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Apellido", reserva.ClienteId);
             ViewData["RutaId"] = new SelectList(_context.Set<Ruta>(), "RutaId", "Destino", reserva.RutaId);
             return View(reserva);
         }
@@ -197,7 +211,6 @@ namespace BusReservation.Controllers
             var reserva = await _context.Reserva.FindAsync(id);
             if (reserva != null)
             {
-                // Find and delete the corresponding Boleto object
                 var boleto = await _context.Boleto.FirstOrDefaultAsync(b => b.ReservaId == id);
                 if (boleto != null)
                 {

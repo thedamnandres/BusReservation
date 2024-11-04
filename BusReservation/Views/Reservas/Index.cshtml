@@ -1,46 +1,46 @@
 ﻿@model IEnumerable<BusReservation.Models.Reserva>
-
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Reservas";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>RESERVAS</h1>
+    <a asp-action="Create" class="btn btn-info text-white">Nueva Reserva</a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Id")
-            </th>
-            <th>
-                @Html.DisplayName("Cliente")
-            </th>
-            <th>
-                @Html.DisplayName("Ruta")
-            </th>
-            <th>
-                @Html.DisplayName("Fecha")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Asiento)
-            </th>
-            <th>
-                @Html.DisplayName("Estado")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MetodoPago)
-            </th>
-            <th>
-                @Html.DisplayName("Precio")
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("Cliente")
+        </th>
+        <th>
+            @Html.DisplayName("Ruta")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiento)
+        </th>
+        <th>
+            @Html.DisplayName("Estado")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetodoPago)
+        </th>
+        <th>
+            @Html.DisplayName("Precio")
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ReservaId)
@@ -64,14 +64,14 @@
             @Html.DisplayFor(modelItem => item.MetodoPago)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Precio)
+            @Html.DisplayFor(modelItem => item.Precio) $
         </td>
         <td>
-            <a asp-action="Edit" asp-route-id="@item.ReservaId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ReservaId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ReservaId">Delete</a>
+            <a asp-action="Edit" asp-route-id="@item.ReservaId" class="btn btn-secondary btn-sm">Editar</a>
+            <a asp-action="Details" asp-route-id="@item.ReservaId" class="btn btn-success btn-sm mx-1">Detalles</a>
+            <a asp-action="Delete" asp-route-id="@item.ReservaId" class="btn btn-danger btn-sm">Eliminar</a>
         </td>
     </tr>
-}
+    }
     </tbody>
 </table>

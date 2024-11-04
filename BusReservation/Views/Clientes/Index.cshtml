@@ -1,53 +1,53 @@
 ﻿@model IEnumerable<BusReservation.Models.Cliente>
-<link rel="stylesheet" href="~/css/paul.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 @{
-    ViewData["Title"] = "Registro de Cliente";
+ViewData["Title"] = "Clientes";
 }
 
-<h1>Registro de Cliente</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>CLIENTES</h1>
+    <a asp-action="Create" class="btn btn-info text-white">Nuevo Cliente</a>
+</div>
 
-<p>
-    <a asp-action="Create" class="btn btn-success btn-sm">Ingreso de datos</a>
-</p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-secondary btn-sm">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-success btn-sm mx-1">Detalles</a>
-                <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
-        </tr>
-}
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-secondary btn-sm">Editar</a>
+            <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-success btn-sm mx-1">Detalles</a>
+            <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+    </tr>
+    }
     </tbody>
 </table>

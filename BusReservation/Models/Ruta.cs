@@ -15,9 +15,11 @@ namespace BusReservation.Models
         [StringLength(100)]
         public string Destino { get; set; }
 
+        [Required]
+        [DataType(DataType.Time)]
         public TimeSpan Duracion { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "La fecha es obligatorio")]
         [DataType(DataType.Date)]
         public DateTime FechaSalida { get; set; }
 

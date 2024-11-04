@@ -2,7 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
+
 <div class="text-center">
-    <h1 class="display-4">BIENVENIDOS</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <title>Bienvenido</title>
+    <link href="#" rel="stylesheet" />
+
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="~/video/home.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <body>
+    <div class="container">
+        <h1>Bienvenidos al sistema de Reserva de Buses</h1>
+        <p>
+            <b>!Hola Santi!</b> Te presentamos nuestro sitio web creada para: Programacion 4 :D <br>
+            Espero que disfrutes cada accion realizada en esta interfaz <b>!Bienvenido a bordo!</b>
+        </p>
+    </div>
+    </body>
+
+    <!-- Contenido adicional que aparece al hacer scroll -->
+    <div class="additional-content">
+        <section>
+            <h2>Características del sistema</h2>
+            <p>Explora nuestras rutas y opciones de reserva. ¡Es muy fácil de usar!</p>
+        </section>
+        <section>
+            <h2>¿Por qué elegirnos?</h2>
+            <p>Ofrecemos la mejor experiencia en reservas de autobuses. ¡Viaja cómodamente!</p>
+        </section>
+        <section>
+            <h2>¡Estamos aquí para ayudarte!</h2>
+            <p>¿Tienes dudas? Contáctanos para recibir asistencia inmediata.</p>
+        </section>
+    </div>
 </div>
