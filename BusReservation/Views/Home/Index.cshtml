@@ -2,7 +2,128 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
+
 <div class="text-center">
-    <h1 class="display-4">BIENVENIDOS</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <title>Bienvenido</title>
+    <link href="#" rel="stylesheet" />
+
+    <!-- Barra de navegación -->
+    <nav>
+        <ul>
+            <li><a href="#rutas">Rutas</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#boletos">Boletos</a></li>
+        </ul>
+    </nav>
+
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="~/video/home.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="container">
+        <div class="recuadro">
+            <h1>Bienvenidos al sistema de Reserva de Buses</h1>
+            <p>
+                <b>"En nuestra plataforma, te damos la bienvenida a una experiencia de viaje única. Nuestro sistema de reserva de buses está diseñado para ofrecerte comodidad y eficiencia, permitiéndote planificar tus viajes interprovinciales de manera sencilla y rápida. ¡Explora nuestras rutas y comienza tu aventura hoy mismo!"</b>
+            </p>
+        </div>
+    </div>
+
+    <!-- Contenido adicional que aparece al hacer scroll -->
+    <div class="additional-content">
+        <section class="recuadro">
+            <h2>Características del sistema</h2>
+            <p>
+                "Descubre una amplia gama de rutas interprovinciales que cubren las principales ciudades del país."
+                "Ofrecemos un proceso de reserva fácil y rápido, con opciones de pago seguras."
+                "Consulta el horario de nuestros autobuses y elige la opción que mejor se adapte a tu viaje."
+            </p>
+        </section>
+        <section class="recuadro">
+            <h2>¿Por qué elegirnos?</h2>
+            <p>
+                "Comprometidos con la seguridad y comodidad de nuestros pasajeros."
+                "Nuestros autobuses están equipados con Wi-Fi, asientos reclinables y entretenimiento a bordo."
+                "Atención al cliente 24/7 para resolver cualquier duda o inconveniente durante tu viaje."
+            </p>
+        </section>
+        <section class="recuadro">
+            <h2>¡Estamos aquí para ayudarte!</h2>
+            <p>
+                "¿Tienes preguntas sobre tu viaje? Nuestro equipo está disponible para asistirte."
+                "Contáctanos a través de nuestro chat en línea o llámanos directamente."
+                "Visita nuestra sección de preguntas frecuentes para obtener respuestas rápidas."
+            </p>
+        </section>
+    </div>
 </div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: auto; /* Permitir el scroll */
+    }
+
+    nav {
+        background-color: rgba(44, 48, 52, 0.8); /* Fondo de la barra de navegación */
+        padding: 10px;
+        position: fixed; /* Fijar la barra en la parte superior */
+        width: 100%;
+        z-index: 2; /* Asegurar que esté encima del video */
+    }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centrar los elementos */
+        }
+
+            nav ul li {
+                margin: 0 15px; /* Espaciado entre elementos */
+            }
+
+                nav ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Envía el video al fondo */
+    }
+
+    .container {
+        position: relative;
+        z-index: 1; /* Asegura que el contenedor esté por encima del video */
+        padding-top: 80px; /* Espaciado superior para que no esté debajo de la barra de navegación */
+    }
+
+    .recuadro {
+        background-color: rgba(44, 48, 52, 0.8); /* Gris con transparencia */
+        color: white; /* Color del texto */
+        padding: 40px; /* Aumenta el espaciado interno para hacerlo más largo */
+        border-radius: 10px; /* Bordes redondeados */
+        max-width: 800px; /* Aumenta el ancho máximo del recuadro */
+        margin: 20px auto; /* Espaciado entre recuadros */
+        text-align: center; /* Centrar el texto */
+        position: relative; /* Para posicionamiento */
+        width: 90%; /* Ancho responsive que permite que el recuadro se ajuste */
+    }
+
+    .additional-content {
+        margin-top: 50px; /* Espaciado superior para que no esté pegado al primer recuadro */
+    }
+</style>
