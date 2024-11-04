@@ -4,10 +4,10 @@
     ViewData["Title"] = "Rutas";
 }
 
-<h1>RUTAS</h1>
+<h1>Rutas</h1>
 
 <p>
-    <a asp-action="Create" class="btn">Crear</a>
+    <a asp-action="Create" class="btn btn-primary btn-lg">Crear Ruta</a>
 </p>
 
 <table class="table">
@@ -50,9 +50,10 @@
                 @item.Hora.ToString(@"hh\:mm")
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RutaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RutaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RutaId">Delete</a>
+              
+                    <a asp-action="Edit" asp-route-id="@item.RutaId" class="btn btn-secondary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.RutaId" class="btn btn-success btn-sm mx-1">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.RutaId" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
 }
