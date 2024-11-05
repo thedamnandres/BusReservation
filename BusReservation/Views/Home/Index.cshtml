@@ -1,12 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/site.css.css" asp-append-version="true" />
+@{
+ViewData["Title"] = "Home Page";
 }
-
-<link rel="stylesheet" href="~/css/andres.css" asp-append-version="true" />
 
 <div class="text-center">
     <title>Bienvenido</title>
     <link href="#" rel="stylesheet" />
+
+    <!-- Barra de navegación -->
 
     <div class="video-background">
         <video autoplay muted loop>
@@ -15,29 +17,22 @@
         </video>
     </div>
 
-    <body>
-    <div class="container">
-        <h1>Bienvenidos al sistema de Reserva de Buses</h1>
-        <p>
-            <b>!Hola Santi!</b> Te presentamos nuestro sitio web creada para: Programacion 4 :D <br>
-            Espero que disfrutes cada accion realizada en esta interfaz <b>!Bienvenido a bordo!</b>
-        </p>
-    </div>
-    </body>
-
-    <!-- Contenido adicional que aparece al hacer scroll -->
-    <div class="additional-content">
-        <section>
-            <h2>Características del sistema</h2>
-            <p>Explora nuestras rutas y opciones de reserva. ¡Es muy fácil de usar!</p>
-        </section>
-        <section>
-            <h2>¿Por qué elegirnos?</h2>
-            <p>Ofrecemos la mejor experiencia en reservas de autobuses. ¡Viaja cómodamente!</p>
-        </section>
-        <section>
-            <h2>¡Estamos aquí para ayudarte!</h2>
-            <p>¿Tienes dudas? Contáctanos para recibir asistencia inmediata.</p>
-        </section>
+    <div class="container additional-content">
+        <div class="recuadro">
+            <h1>BUS RESERVATION</h1>
+            <p>
+                <b>Este proyecto tiene como objetivo la compra y reserva de asientos para viajes interprovinciales 
+                    alrededor del país, evitando así que las personas tengan que acercarse físicamente a una boletería
+                    para comprar su boleto de bus.
+                    </b>
+            </p>
+            <hr/>
+            <h2>FUNCIONALIDADES</h2>
+            <p>
+                Principalmente, el sistema registra a los clientes; se puede visualizar, crear y editar las rutas 
+                de los buses, así como comprar un boleto y, por ende, reservar un asiento en el bus. Con esto, se 
+                puede gestionar y anticipar de mejor manera las personas que irán en el bus y los asientos disponibles.
+            </p>
+        </div>
     </div>
 </div>

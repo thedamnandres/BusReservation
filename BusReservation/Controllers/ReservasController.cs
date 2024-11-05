@@ -83,13 +83,12 @@ namespace BusReservation.Controllers
             {
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
-
-                // Create a Boleto object when a Reserva is created
+                
                 var boleto = new Boleto
                 {
                     ReservaId = reserva.ReservaId,
                     Detalles = "Reserva de Bus", 
-                    CodigoQR = "QR code here", // Generate or set QR code
+                    CodigoQR = "QR code here", 
                     FechaEmision = DateTime.Now
                 };
 
@@ -157,8 +156,8 @@ namespace BusReservation.Controllers
                     var boleto = await _context.Boleto.FirstOrDefaultAsync(b => b.ReservaId == reserva.ReservaId);
                     if (boleto != null)
                     {
-                        boleto.Detalles = "Updated details here"; // Update appropriate details
-                        boleto.CodigoQR = "Updated QR code here"; // Update or regenerate QR code
+                        boleto.Detalles = "Updated details here"; 
+                        boleto.CodigoQR = "Updated QR code here"; 
                         boleto.FechaEmision = DateTime.Now;
 
                         _context.Update(boleto);
